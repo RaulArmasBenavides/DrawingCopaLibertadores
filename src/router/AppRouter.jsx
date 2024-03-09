@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 // import { JournalRoutes } from '../journal/routes/JournalRoutes';
 import { CheckingAuth } from '../ui';
 import { useCheckAuth } from '../hooks';
-
+import { DrawingRoutes} from '../drawing/routes/DrawingRoutes'
 
 export const AppRouter = () => {
 
@@ -22,13 +22,13 @@ export const AppRouter = () => {
         //    : <Route path="/auth/*" element={ <AuthRoutes /> } />
         }
 
-        <Route path='/*' element={ <Navigate to='/auth/login' />  } />
+        {/* <Route path='/*' element={ <Navigate to='/auth/login' />  } /> */}
 
         {/* Login y Registro */}
         {/* <Route path="/auth/*" element={ <AuthRoutes /> } /> */}
 
         {/* DrawingApp */}
-        {/* <Route path="/*" element={ <DrawingRoutes /> } /> */}
+        { <Route path="/*" element={ <DrawingRoutes /> } /> }
 
     </Routes>
   )

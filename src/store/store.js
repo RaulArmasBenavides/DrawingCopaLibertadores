@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { drawSlice } from './drawing';
+import { sorteoSlice } from './drawing';
 
 export const store = configureStore({
   reducer: {
-    draw: drawSlice.reducer
+    draw: sorteoSlice.reducer
   },
 });

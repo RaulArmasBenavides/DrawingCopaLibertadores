@@ -1,0 +1,37 @@
+.sorteo-simulator {
+    font-family: 'Arial', sans-serif;
+    color: white;
+    background-color: #1a1a2e;
+    padding: 20px;
+  }
+  
+  .sorteo-simulator header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .pots {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .pot {
+    background-color: #16213e;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .group {
+    background-color: #0f3460;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .team {
+    background-color: #1a1a2e;
+    margin: 5px 0;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
