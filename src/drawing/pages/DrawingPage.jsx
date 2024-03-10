@@ -2,31 +2,52 @@ import React , { useState } from 'react';
 import './SorteoSimulator.css'; // Asume que tus estilos están aquí
 import {Team} from '../components/Team';
 import { Flipper, Flipped } from 'react-flip-toolkit';
+import Button from '@mui/material/Button';
+
+
 export const DrawingPage = ()=> {
 
+  const initialState = {
+    pots :{
+      pot1: [{ id: '1', name: 'Team 1', logo: '/path/to/logo1.png' }],
+      pot2: [{ id: '2', name: 'Team 2', logo: '/path/to/logo2.png' }],
+      pot3: [{ id: '3', name: 'Team 3', logo: '/path/to/logo3.png' }],
+      pot4: [{ id: '4', name: 'Team 4', logo: '/path/to/logo4.png' }],
+    },
+      groups : {
+      group1: [/* ...teams */],
+      group2: [/* ...teams */],
+      group3: [/* ...teams */],
+      group4: [/* ...teams */],
+      group5: [/* ...teams */],
+      group6: [/* ...teams */],
+      group7: [/* ...teams */],
+      group8: [/* ...teams */],
+    }
+  };
 
-  const [teams, setTeams] = useState({
-
-  // Asumiendo que tienes tu data en algún lugar para los pots y los grupos
-  pots :{
-    pot1: [{ id: '1', name: 'Team 1', logo: '/path/to/logo1.png' }],
-    pot2: [{ id: '2', name: 'Team 2', logo: '/path/to/logo2.png' }],
-    pot3: [{ id: '3', name: 'Team 3', logo: '/path/to/logo3.png' }],
-    pot4: [{ id: '4', name: 'Team 4', logo: '/path/to/logo4.png' }],
-  },
-    groups : {
-    group1: [/* ...teams */],
-    group2: [/* ...teams */],
-    group3: [/* ...teams */],
-    group4: [/* ...teams */],
-    group5: [/* ...teams */],
-    group6: [/* ...teams */],
-    group7: [/* ...teams */],
-    group8: [/* ...teams */],
-  }
-  });
+  const [teams, setTeams] = useState(initialState);
 
 
+ 
+
+  const handleRandomDraw = () => {
+    let newPots = { ...teams.pots };
+    let newGroups = { ...teams.groups };
+    Object.keys(newPots).forEach(potKey => {
+      newPots[potKey].forEach(team => {
+        const availableGroups = Object.keys(newGroups);
+        const randomGroupKey = availableGroups[Math.floor(Math.random() * availableGroups.length)];
+        newGroups[randomGroupKey] = [...newGroups[randomGroupKey], team];
+      });
+    });
+
+    // Actualizar el estado para reflejar los nuevos grupos y vaciar los pots
+    setTeams({ pots: { pot1: [], pot2: [], pot3: [], pot4: [] }, groups: newGroups });
+  };
+  const handleReset = () => {
+    setTeams(initialState);
+  };
 
     // Función para mover equipos de pots a grupos
     const handleMoveTeamToGroup = (teamId, potKey, groupKey) => {
@@ -41,7 +62,7 @@ export const DrawingPage = ()=> {
       };
       setTeams({ pots: newPots, groups: newGroups });
     };
-
+ 
   return (
     <Flipper flipKey={JSON.stringify(teams)}>
     <div className="sorteo-simulator">
@@ -56,7 +77,7 @@ export const DrawingPage = ()=> {
             <h2>{potKey.toUpperCase()}</h2>
             {teams.pots[potKey].map(team => (
               <Flipped key={team.id} flipId={team.id}>
-                <div onClick={() => handleMoveTeamToGroup(team.id, potKey, 'group1')}>
+                <div>
                   <Team name={team.name} logo={team.logo} />
                 </div>
               </Flipped>
@@ -64,6 +85,12 @@ export const DrawingPage = ()=> {
           </div>
         ))}
       </div>
+      <Button variant="contained" color="primary" onClick={handleRandomDraw}>
+          Sortear Grupos
+        </Button>
+        <Button variant="outlined" color="secondary" onClick={handleReset}>
+    Limpiar
+  </Button>
       <div className="groups">
         {Object.keys(teams.groups).map(groupKey => (
           <div key={groupKey} className="group">
