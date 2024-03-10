@@ -1,0 +1,20 @@
+.team {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Ajusta el espacio entre el logo y el nombre */
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  
+  .team-logo {
+    width: 40px; /* o el tamaño que prefieras */
+    height: 40px; /* mantiene la relación de aspecto */
+  }
+  
+  .team-name {
+    font-size: 16px;
+    color: #333;
+  }
