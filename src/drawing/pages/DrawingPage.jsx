@@ -27,6 +27,7 @@ export const DrawingPage = ()=> {
         <p>Pots updated on January 1, 2024</p>
         <p>2024 Copa Libertadores Group Stage Draw Simulator - Pots</p>
       </header>
+      <div>
       <div className="pots">
         {Object.keys(teams.pots).map(potKey => (
           <div key={potKey} className="pot">
@@ -41,6 +42,8 @@ export const DrawingPage = ()=> {
           </div>
         ))}
       </div>
+      </div>
+     
       <Button variant="contained" color="primary" onClick={handleRandomDraw}>
           Sortear Grupos
         </Button>
